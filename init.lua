@@ -70,6 +70,9 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- [[reload neovim configuration]]
+vim.keymap.set('n', '<leader><leader>r', '<cmd>source $NVIM_CONFIG_FILE<cr>', { desc = 'reloads neovim config without opening and closing neovim' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -134,6 +137,7 @@ vim.opt.rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 --
+
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
@@ -188,17 +192,6 @@ require('lazy').setup({
     config = function()
       vim.cmd 'TransparentEnable'
     end,
-  },
-
-  {
-    'stevearc/oil.nvim',
-    opts = {},
-
-    config = function()
-      vim.keymap.set('n', '<leader>e', '<C-w>v<Cmd>Oil<Cr><C-w>30<lt>', { desc = 'Opens Oil explorer on the right side' })
-    end,
-
-    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   },
 
   {
@@ -420,6 +413,16 @@ require('lazy').setup({
     },
   },
   { 'Bilal2453/luvit-meta', lazy = true },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+
+    config = function()
+      vim.keymap.set('n', '<leader>e', '<C-w>s<C-w>T<cmd>Oil<cr>', { desc = 'Opens Oil explorer on the right side' })
+    end,
+
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+  },
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
