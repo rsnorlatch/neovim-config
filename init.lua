@@ -1,4 +1,4 @@
-local fg_color = '#BFBDB6'
+local ui_fg_color = '#565B66'
 
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
@@ -779,9 +779,6 @@ require('lazy').setup({
     init = function()
       vim.cmd.colorscheme 'ayu-dark'
       vim.cmd.hi 'Comment gui=none'
-
-      vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = fg_color, bold = true })
-      vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = fg_color, bold = true })
     end,
   },
 
