@@ -1,5 +1,8 @@
 local ui_fg_color = '#565B66'
 
+vim.cmd 'set tabstop=2'
+vim.cmd 'set shiftwidth=2'
+
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
