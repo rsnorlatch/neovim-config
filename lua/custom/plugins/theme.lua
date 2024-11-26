@@ -1,17 +1,16 @@
 return {
   {
+    'xiyaowong/transparent.nvim',
+    -- config = function()
+    --   vim.cmd 'TransparentEnable'
+    -- end,
+  },
+  {
     'Shatur/neovim-ayu',
     priority = 1000,
     init = function()
       vim.cmd.colorscheme 'ayu-dark'
       vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
-  {
-    'xiyaowong/transparent.nvim',
-    config = function()
-      vim.cmd 'TransparentEnable'
     end,
   },
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },

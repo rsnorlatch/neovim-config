@@ -29,6 +29,14 @@ return {
           pair = '{}',
           disabled_filetypes = {},
         },
+        ['|'] = {
+          escape = true,
+          close = true,
+          pair = '||',
+          enabled_filetypes = {
+            'rust',
+          },
+        },
       },
     },
   },
@@ -45,8 +53,6 @@ return {
       'less',
     },
   },
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -81,6 +87,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        cpp = { 'clang-format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -89,5 +96,4 @@ return {
       },
     },
   },
-  'windwp/nvim-ts-autotag',
 }
