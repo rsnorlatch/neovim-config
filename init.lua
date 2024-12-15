@@ -179,6 +179,7 @@ require('lazy').setup({
       },
     },
   },
+  'OrangeT/vim-csharp',
   {
     'fsouza/prettierd',
     ft = {
