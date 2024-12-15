@@ -1,46 +1,5 @@
 return {
   {
-    'm4xshen/autoclose.nvim',
-    opts = {
-      keys = {
-        ['"'] = {
-          escape = true,
-          close = true,
-          pair = '""',
-          disabled_filetypes = {},
-        },
-        ["'"] = {
-          escape = true,
-          close = true,
-          pair = "''",
-          disabled_filetypes = {},
-        },
-
-        ['['] = {
-          escape = true,
-          close = true,
-          pair = '[]',
-          disabled_filetypes = {},
-        },
-
-        ['{'] = {
-          escape = true,
-          close = true,
-          pair = '{}',
-          disabled_filetypes = {},
-        },
-        ['|'] = {
-          escape = true,
-          close = true,
-          pair = '||',
-          enabled_filetypes = {
-            'rust',
-          },
-        },
-      },
-    },
-  },
-  {
     'fsouza/prettierd',
     ft = {
       'css',
@@ -93,6 +52,50 @@ return {
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+    },
+  },
+
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+
+  {
+    'm4xshen/autoclose.nvim',
+    opts = {
+      keys = {
+        ['"'] = {
+          escape = true,
+          close = true,
+          pair = '""',
+          disabled_filetypes = {},
+        },
+        ["'"] = {
+          escape = true,
+          close = true,
+          pair = "''",
+          disabled_filetypes = {},
+        },
+
+        ['['] = {
+          escape = true,
+          close = true,
+          pair = '[]',
+          disabled_filetypes = {},
+        },
+
+        ['{'] = {
+          escape = true,
+          close = true,
+          pair = '{}',
+          disabled_filetypes = {},
+        },
+        ['|'] = {
+          escape = true,
+          close = true,
+          pair = '||',
+          enabled_filetypes = {
+            'rust',
+          },
+        },
       },
     },
   },
