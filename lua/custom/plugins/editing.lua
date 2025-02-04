@@ -37,4 +37,10 @@ return { -- Collection of various small independent plugins/modules
     end,
   },
   'windwp/nvim-ts-autotag',
+
+  {
+    'akinsho/git-conflict.nvim',
+    version = '*',
+    config = true,
+  },
 }

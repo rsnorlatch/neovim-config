@@ -5,14 +5,7 @@ return {
     --   vim.cmd 'TransparentEnable'
     -- end,
   },
-  {
-    'Shatur/neovim-ayu',
-    priority = 1000,
-    init = function()
-      vim.cmd.colorscheme 'ayu-dark'
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
+  'Shatur/neovim-ayu',
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
   {
     'akinsho/bufferline.nvim',
@@ -31,6 +24,13 @@ return {
           color_icons = true,
         },
       }
+    end,
+  },
+  {
+    'rockerBOO/boo-colorscheme-nvim',
+    priority = 1000,
+    init = function()
+      vim.cmd.colorscheme 'forest_stream'
     end,
   },
 }

@@ -22,7 +22,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = require 'lua.custom.plugins.init'
+local plugins = require 'custom.plugins.init'
 
 require('lazy').setup(plugins, {
   ui = {
