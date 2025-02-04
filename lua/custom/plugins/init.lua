@@ -1,16 +1,20 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
-return {
-  {
-    'stevearc/oil.nvim',
-    opts = {},
+local navigation = require 'custom.plugins.navigation'
+local theme = require 'custom.plugins.theme'
+local formatting = require 'custom.plugins.formatting'
+local lsp = require 'custom.plugins.lsp'
+local treesitter = require 'custom.plugins.tree-sitter'
+local editing = require 'custom.plugins.editing'
+local util = require 'custom.plugins.util'
 
-    config = function()
-      vim.keymap.set('n', '<leader>e', '<C-w>s<C-w>T<cmd>Oil<cr>', { desc = 'Opens Oil explorer on the right side' })
-    end,
-
-    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-  },
-}
+return vim
+  .iter({
+    navigation,
+    theme,
+    formatting,
+    lsp,
+    treesitter,
+    editing,
+    util,
+  })
+  :flatten()
+  :totable()
