@@ -12,7 +12,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- [[terminal]
-vim.keymap.set('n', '<leader>tt', '<C-w>s<C-W>T<Cmd>term<CR>jjA', { desc = 'opens terminal in new tab' })
+vim.keymap.set('n', '<leader>tt', '<cmd>term<cr>', { desc = 'opens terminal in new tab' })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
