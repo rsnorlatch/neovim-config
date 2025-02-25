@@ -27,3 +27,5 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.keymap.set('n', '<leader>we', '<cmd>Oil<cr>', { desc = 'Open Oil directory editor' })
+
+vim.keymap.set('n', '<leader>wc', '<cmd>source $NVIM_CONFIG/init.lua<cr>', { desc = 'Reload neovim config' })
