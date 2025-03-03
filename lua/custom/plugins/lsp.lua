@@ -168,6 +168,18 @@ return {
           },
         },
 
+        emmet_language_server = {
+          filetypes = {
+            'css',
+            'html',
+            'php',
+            'sass',
+            'scss',
+            'javascriptreact',
+            'typescriptreact',
+          },
+        },
+
         intelephense = {
           cmd = { 'intelephense', '--stdio' },
           filetypes = { 'php' },
