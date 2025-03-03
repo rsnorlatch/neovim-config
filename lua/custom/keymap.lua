@@ -12,6 +12,16 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- [[terminal]
+
+function start_terminal()
+  vim.api.nvim_command '<CMD>term<CR>'
+
+  local term_buffer = vim.api.nvim_get_current_buf()
+  local buffer_name = vim.api.nvim_buf_get_name(term_buffer)
+
+  -- TODO: make it so that every terminal buffer name starts with TERM
+end
+
 vim.keymap.set('n', '<leader>tt', '<cmd>term<cr>', { desc = 'opens terminal in new tab' })
 
 -- TIP: Disable arrow keys in normal mode

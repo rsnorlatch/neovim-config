@@ -31,6 +31,7 @@ return {
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -166,6 +167,12 @@ return {
             },
           },
         },
+
+        intelephense = {
+          cmd = { 'intelephense', '--stdio' },
+          filetypes = { 'php' },
+          root_dir = require('lspconfig').util.root_pattern('composer.json', '.git', 'index.php'),
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -185,6 +192,12 @@ return {
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        ensure_installed = {
+          'intelephense',
+        },
+        automatic_installation = {
+          'intelephense',
+        },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
