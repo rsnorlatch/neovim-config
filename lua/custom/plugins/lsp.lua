@@ -263,7 +263,14 @@ return {
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local parser = require 'luasnip.util.parser'
       luasnip.config.setup {}
+
+      luasnip.snippet = {
+        php = {
+          parser.parse_snippet('php', '<?php\n  $1\n?>'),
+        },
+      }
 
       cmp.setup {
         snippet = {

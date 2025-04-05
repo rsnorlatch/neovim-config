@@ -13,7 +13,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 -- [[terminal]
 
-function start_terminal()
+function StartTerminal()
   vim.api.nvim_command '<CMD>term<CR>'
 
   local term_buffer = vim.api.nvim_get_current_buf()
@@ -38,4 +38,13 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.keymap.set('n', '<leader>we', '<cmd>Oil<cr>', { desc = 'Open Oil directory editor' })
 
-vim.keymap.set('n', '<leader>wc', '<cmd>source $NVIM_CONFIG/init.lua<cr>', { desc = 'Reload neovim config' })
+vim.keymap.set('n', '<leader>wc', function()
+  local current_buffer = vim.api.nvim_buf_get_name(0)
+
+  if not current_buffer:gmatch 'AppData/Local/nvim' then
+    vim.print 'you are trying to reload neovim config while not in a neovim config!'
+    return
+  end
+
+  vim.cmd('source ' .. current_buffer)
+end, { desc = 'Reload neovim config' })
