@@ -264,13 +264,23 @@ return {
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       local parser = require 'luasnip.util.parser'
+
       luasnip.config.setup {}
 
-      luasnip.snippet = {
-        php = {
-          parser.parse_snippet('php', '<?php\n  $1\n?>'),
+      local s = luasnip.snippet
+      local t = luasnip.text_node
+      local i = luasnip.insert_node
+
+      local snippets = {
+        ['php'] = {
+          s('php', { t '<?php \n', i(1), t '\n?>' }),
+          s('=?', { t '<?= ', i(1), t '?>' }),
         },
       }
+
+      luasnip.add_snippets(nil, {
+        php = snippets['php'],
+      })
 
       cmp.setup {
         snippet = {
