@@ -273,7 +273,7 @@ return {
 
       local snippets = {
         ['php'] = {
-          s('php', { t '<?php \n', i(1), t '\n?>' }),
+          s('php', { t '<?php ', i(1), t '?>' }),
           s('=?', { t '<?= ', i(1), t '?>' }),
         },
       }

@@ -1,6 +1,3 @@
-vim.cmd 'set tabstop=2'
-vim.cmd 'set shiftwidth=2'
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -62,4 +59,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- opts.rocks.hererocks = false
+vim.g.expandtab = true
+vim.g.shiftwidth = 2
+vim.g.tabstop = 2

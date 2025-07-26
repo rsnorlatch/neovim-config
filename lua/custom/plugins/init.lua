@@ -6,6 +6,8 @@ local treesitter = require 'custom.plugins.tree-sitter'
 local editing = require 'custom.plugins.editing'
 local util = require 'custom.plugins.util'
 
+local debug = require 'custom.plugins.debug'
+
 return vim
   .iter({
     navigation,
@@ -15,6 +17,7 @@ return vim
     treesitter,
     editing,
     util,
+    debug,
   })
   :flatten()
   :totable()
