@@ -40,4 +40,5 @@ return {
       require('easy-dotnet').setup()
     end,
   },
+  'seblyng/roslyn.nvim',
 }
