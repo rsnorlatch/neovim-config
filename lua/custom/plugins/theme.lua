@@ -30,7 +30,7 @@ return {
     'rockerBOO/boo-colorscheme-nvim',
     priority = 1000,
     init = function()
-      vim.cmd.colorscheme 'forest_stream'
+      vim.cmd.colorscheme 'ayu-mirage'
     end,
   },
 }
