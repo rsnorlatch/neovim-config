@@ -38,6 +38,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.keymap.set('n', '<leader>we', '<cmd>Oil<cr>', { desc = 'Open Oil directory editor' })
 
+vim.keymap.set('n', 's', 'xa', { desc = 'Similar to x but you enter insert mode afterward' })
+
 vim.keymap.set('n', '<leader>wc', function()
   local current_buffer = vim.api.nvim_buf_get_name(0)
 

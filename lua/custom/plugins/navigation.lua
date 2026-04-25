@@ -77,6 +77,15 @@ return {
     },
     config = function()
       require('telescope').setup {
+        defaults = {
+          file_ignore_patterns = {
+            '^\\./.*\\/(bin|bash)$',
+            'bin',
+            'obj',
+            './**/bin',
+            './**/obj',
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
