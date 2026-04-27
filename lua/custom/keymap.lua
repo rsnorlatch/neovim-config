@@ -14,18 +14,16 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- [[terminal]
 local first_term_buf = nil
 function StartTerminal()
-  vim.api.nvim_command 'term'
-
-  buf = vim.api.nvim_get_current_buf()
-
   if not first_term_buf then
+    vim.api.nvim_command 'term'
+    buf = vim.api.nvim_get_current_buf()
     first_term_buf = buf
+  else
+    vim.api.nvim_command('b ' .. first_term_buf)
   end
 end
 
-function GoToFirstTerm()
-  vim.api.nvim_command('b ' .. first_term_buf)
-end
+function GoToFirstTerm() end
 
 vim.keymap.set('n', '<leader>tt', StartTerminal, { desc = 'opens terminal in new tab' })
 vim.keymap.set('n', '<leader>tg', GoToFirstTerm, { desc = 'open last opened terminal' })
