@@ -12,17 +12,23 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- [[terminal]
-
+local first_term_buf = nil
 function StartTerminal()
-  vim.api.nvim_command '<CMD>term<CR>'
+  vim.api.nvim_command 'term'
 
-  local term_buffer = vim.api.nvim_get_current_buf()
-  local buffer_name = vim.api.nvim_buf_get_name(term_buffer)
+  buf = vim.api.nvim_get_current_buf()
 
-  -- TODO: make it so that every terminal buffer name starts with TERM
+  if not first_term_buf then
+    first_term_buf = buf
+  end
 end
 
-vim.keymap.set('n', '<leader>tt', '<cmd>term<cr>', { desc = 'opens terminal in new tab' })
+function GoToFirstTerm()
+  vim.api.nvim_command('b ' .. first_term_buf)
+end
+
+vim.keymap.set('n', '<leader>tt', StartTerminal, { desc = 'opens terminal in new tab' })
+vim.keymap.set('n', '<leader>tg', GoToFirstTerm, { desc = 'open last opened terminal' })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')

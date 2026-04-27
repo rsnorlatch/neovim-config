@@ -1,6 +1,8 @@
 vim.cmd 'set tabstop=2'
 vim.cmd 'set shiftwidth=2'
 
+vim.opt.hidden = true
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
