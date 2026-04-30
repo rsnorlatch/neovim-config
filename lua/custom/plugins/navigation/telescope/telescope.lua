@@ -1,5 +1,3 @@
-local buffer_previewer = require "telescope.previewers.buffer_previewer"
-local string.buffer    = require "string.buffer"
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -35,9 +33,15 @@ return {
 
         pickers = {
           buffer = {
-            show_all_buffers = true
-          }
-        }
+            show_all_buffers = true,
+          },
+        },
+
+        defaults = {
+          preview = {
+            treesitter = false,
+          },
+        },
       }
 
       -- Enable Telescope extensions if they are installed
