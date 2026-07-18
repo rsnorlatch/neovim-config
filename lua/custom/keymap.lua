@@ -25,7 +25,13 @@ end
 
 function GoToFirstTerm() end
 
-vim.keymap.set('n', '<leader>tt', StartTerminal, { desc = 'opens terminal in new tab' })
+vim.keymap.set('n', '<leader>tt', function()
+  vim.api.nvim_command 'term'
+  local buf = vim.api.nvim_get_current_buf()
+
+  vim.api.nvim_buf_set_name(buf, 'TERM ' .. buf)
+end, { desc = 'opens terminal in new tab' })
+
 vim.keymap.set('n', '<leader>tg', GoToFirstTerm, { desc = 'open last opened terminal' })
 
 -- TIP: Disable arrow keys in normal mode
