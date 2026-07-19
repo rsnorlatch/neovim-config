@@ -103,6 +103,7 @@ return {
       local builtin = require 'telescope.builtin'
       local terminal_picker = require 'custom.plugins.navigation.telescope.extension.terminal_buffer_picker'
       local buffers = require 'custom.plugins.navigation.telescope.extension.buffer_picker'
+      local delete_buffer = require 'custom.plugins.navigation.telescope.extension.delete_buffer_picker'
 
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
@@ -116,6 +117,10 @@ return {
       vim.keymap.set('n', '<leader><leader>', function()
         buffers.BufferPicker()
       end, { desc = '[ ] Find existing buffers' })
+
+      vim.keymap.set('n', '<leader>db', function()
+        delete_buffer.DeleteBufferPicker()
+      end)
 
       vim.keymap.set('n', '<leader>st', function()
         terminal_picker.GetActiveTerminal(require('telescope.themes').get_dropdown {})
