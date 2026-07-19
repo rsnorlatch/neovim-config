@@ -40,6 +40,7 @@ function GetActiveTerminal(opts)
     :totable()
 
   opts = opts or {}
+
   pickers
     .new(opts, {
       prompt_title = 'active terminal',
