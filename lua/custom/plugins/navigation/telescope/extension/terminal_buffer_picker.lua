@@ -22,17 +22,17 @@ function dump(o)
   end
 end
 
-local active_terminal = vim
-  .iter(vim.api.nvim_list_bufs())
-  :filter(function(bufid)
-    return vim.api.nvim_get_option_value('buftype', { buf = bufid }) == 'terminal'
-  end)
-  :map(function(bufid)
-    return { bufid, vim.api.nvim_buf_get_name(bufid) }
-  end)
-  :totable()
-
 function GetActiveTerminal(opts)
+  local active_terminal = vim
+    .iter(vim.api.nvim_list_bufs())
+    :filter(function(bufid)
+      return vim.api.nvim_get_option_value('buftype', { buf = bufid }) == 'terminal'
+    end)
+    :map(function(bufid)
+      return { bufid, vim.api.nvim_buf_get_name(bufid) }
+    end)
+    :totable()
+
   opts = opts or {}
   pickers
     .new(opts, {
@@ -43,22 +43,26 @@ function GetActiveTerminal(opts)
           actions.close(prompt_bufnr)
           local selection = action_state.get_selected_entry()
 
-          vim.api.nvim_command('buffer ' .. selection.bufid)
+          if selection == nil then
+            print 'no terminal selected'
+            return
+          end
+
+          vim.api.nvim_command('buffer ' .. selection.value[1])
         end)
         return true
       end,
 
       finder = finders.new_table {
         results = active_terminal,
+        entry_maker = function(entry)
+          return {
+            value = entry,
+            display = entry[2],
+            ordinal = entry[1],
+          }
+        end,
       },
-
-      entry_maker = function(entry)
-        return {
-          value = entry,
-          display = entry[1],
-          ordinal = entry[1],
-        }
-      end,
 
       sorter = conf.generic_sorter(opts),
     })
@@ -67,4 +71,6 @@ end
 
 -- to execute the function
 
--- print(dump(active_terminal))
+return {
+  GetActiveTerminal,
+}
