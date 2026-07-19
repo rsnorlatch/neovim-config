@@ -3,6 +3,9 @@ local finders = require 'telescope.finders'
 local conf = require('telescope.config').values
 local actions = require 'telescope.actions'
 local action_state = require 'telescope.actions.state'
+
+local previewers = require 'telescope.previewers'
+
 -- Source - https://stackoverflow.com/a/27028488
 -- Posted by hookenz, modified by community. See post 'Timeline' for change history
 -- Retrieved 2026-07-18, License - CC BY-SA 4.0
@@ -26,6 +29,9 @@ function GetActiveTerminal(opts)
   local active_terminal = vim
     .iter(vim.api.nvim_list_bufs())
     :filter(function(bufid)
+      return vim.api.nvim_buf_is_loaded(bufid)
+    end)
+    :filter(function(bufid)
       return vim.api.nvim_get_option_value('buftype', { buf = bufid }) == 'terminal'
     end)
     :map(function(bufid)
@@ -48,8 +54,11 @@ function GetActiveTerminal(opts)
             return
           end
 
-          vim.api.nvim_command('buffer ' .. selection.value[1])
+          local selected_buffer_id = selection.value[1]
+
+          vim.api.nvim_command('buffer ' .. selected_buffer_id)
         end)
+
         return true
       end,
 
@@ -58,6 +67,7 @@ function GetActiveTerminal(opts)
         entry_maker = function(entry)
           return {
             value = entry,
+            path = entry[2],
             display = entry[2],
             ordinal = entry[1],
           }
@@ -72,5 +82,5 @@ end
 -- to execute the function
 
 return {
-  GetActiveTerminal,
+  GetActiveTerminal = GetActiveTerminal,
 }
