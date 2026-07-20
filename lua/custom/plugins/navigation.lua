@@ -125,6 +125,9 @@ return {
       vim.keymap.set('n', '<leader>st', function()
         terminal_picker.GetActiveTerminal(require('telescope.themes').get_dropdown {})
       end, { desc = '[S]earch [T]erminal' })
+
+      vim.keymap.set('n', '<leader>sb', builtin.git_branches, { desc = '[S]earch [B]ranches' })
+
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.

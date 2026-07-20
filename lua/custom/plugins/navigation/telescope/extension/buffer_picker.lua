@@ -21,7 +21,7 @@ function BufferPicker(opts)
       return vim.api.nvim_buf_get_name(bufid) ~= ''
     end)
     :map(function(bufid)
-      return { bufid, bufid .. ' ' .. vim.api.nvim_buf_get_name(bufid) }
+      return { bufid, vim.api.nvim_buf_get_name(bufid) }
     end)
     :totable()
 
@@ -53,18 +53,21 @@ function BufferPicker(opts)
           local name = vim.fn.fnamemodify(entry[2], ':t')
           local ext = vim.fn.fnamemodify(entry[2], ':e')
           local icon, hl = devicons.get_icon(name, ext, { default = true })
-          local display = icon .. ' ' .. entry[2]
+          local display = entry[1] .. ' ' .. icon .. ' ' .. entry[2]
           return {
             value = entry,
             path = entry[2],
             display = display,
             ordinal = entry[1],
-            highlight = { { 0, 0, #icon, hl } },
+            highlight = {
+              { 0, 0, #tostring(entry[1]), 'Number' },
+              { 0, 0, #icon, hl },
+            },
           }
         end,
       },
 
-      previewer = conf.grep_previewer(opts),
+      previewer = conf.file_previewer(opts),
 
       sorter = conf.generic_sorter(opts),
     })
