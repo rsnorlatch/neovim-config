@@ -27,7 +27,7 @@ function BufferPicker(opts)
 
   pickers
     .new(opts, {
-      prompt_title = 'buffer',
+      prompt_title = 'buffers',
 
       attach_mappings = function(prompt_bufnr, map)
         actions.select_default:replace(function()
@@ -49,16 +49,18 @@ function BufferPicker(opts)
 
       finder = finders.new_table {
         results = buffers,
+
         entry_maker = function(entry)
           local name = vim.fn.fnamemodify(entry[2], ':t')
           local ext = vim.fn.fnamemodify(entry[2], ':e')
           local icon, hl = devicons.get_icon(name, ext, { default = true })
           local display = entry[1] .. ' ' .. icon .. ' ' .. entry[2]
+
           return {
             value = entry,
             path = entry[2],
             display = display,
-            ordinal = entry[1],
+            ordinal = entry[2],
             highlight = {
               { 0, 0, #tostring(entry[1]), 'Number' },
               { 0, 0, #icon, hl },

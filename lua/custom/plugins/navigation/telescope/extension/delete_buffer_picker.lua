@@ -18,7 +18,7 @@ function DeleteBufferPicker(opts)
       return vim.api.nvim_buf_get_name(bufid) ~= ''
     end)
     :map(function(bufid)
-      return { bufid, bufid .. ' ' .. vim.api.nvim_buf_get_name(bufid) }
+      return { bufid, vim.api.nvim_buf_get_name(bufid) }
     end)
     :totable()
 
@@ -32,7 +32,7 @@ function DeleteBufferPicker(opts)
           local selection = action_state.get_selected_entry()
 
           if selection == nil then
-            print 'no terminal selected'
+            print 'no buffer selected'
             return
           end
 
@@ -50,13 +50,13 @@ function DeleteBufferPicker(opts)
           local name = vim.fn.fnamemodify(entry[2], ':t')
           local ext = vim.fn.fnamemodify(entry[2], ':e')
           local icon, hl = devicons.get_icon(name, ext, { default = true })
-          local display = icon .. ' ' .. entry[2]
+          local display = entry[1] .. ' ' .. icon .. ' ' .. entry[2]
+
           return {
             value = entry,
             path = entry[2],
             display = display,
-            ordinal = entry[1],
-            highlight = { { 0, 0, #icon, hl } },
+            ordinal = entry[2],
           }
         end,
       },

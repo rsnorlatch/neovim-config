@@ -70,7 +70,7 @@ function GetActiveTerminal(opts)
             value = entry,
             path = entry[2],
             display = entry[2],
-            ordinal = entry[1],
+            ordinal = entry[2],
           }
         end,
       },
